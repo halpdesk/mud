@@ -1,6 +1,6 @@
 package game
 
-import "github.com/halpdesk/randomwalker/language"
+import "github.com/halpdesk/mud/language"
 
 func NewPlayer(name string, hp int) Player {
 	return Player{

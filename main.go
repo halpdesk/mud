@@ -3,11 +3,11 @@ package main
 import (
 	"fmt"
 
-	"github.com/halpdesk/randomwalker/client"
-	"github.com/halpdesk/randomwalker/command"
-	"github.com/halpdesk/randomwalker/game"
-	"github.com/halpdesk/randomwalker/invoker"
-	"github.com/halpdesk/randomwalker/screen"
+	"github.com/halpdesk/mud/client"
+	"github.com/halpdesk/mud/command"
+	"github.com/halpdesk/mud/game"
+	"github.com/halpdesk/mud/invoker"
+	"github.com/halpdesk/mud/screen"
 )
 
 // Server and user sessions

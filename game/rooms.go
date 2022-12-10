@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/halpdesk/randomwalker/language"
-	"github.com/halpdesk/randomwalker/screen"
+	"github.com/halpdesk/mud/language"
+	"github.com/halpdesk/mud/screen"
 )
 
 type RoomType string

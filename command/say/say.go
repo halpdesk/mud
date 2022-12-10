@@ -3,7 +3,7 @@ package say
 import (
 	"fmt"
 
-	"github.com/halpdesk/randomwalker/game"
+	"github.com/halpdesk/mud/game"
 )
 
 func New(p game.Player) Command {

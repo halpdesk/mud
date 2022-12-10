@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/halpdesk/randomwalker/game"
+	"github.com/halpdesk/mud/game"
 )
 
 var ErrCoordinatesNotExists = errors.New("coordinates does not exist")

@@ -4,8 +4,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/halpdesk/randomwalker/language"
-	"github.com/halpdesk/randomwalker/screen"
+	"github.com/halpdesk/mud/language"
+	"github.com/halpdesk/mud/screen"
 )
 
 var ErrPrepositionDoesNotExist = errors.New("preposition does not exist")

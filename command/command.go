@@ -4,11 +4,11 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/halpdesk/randomwalker/command/look"
-	"github.com/halpdesk/randomwalker/command/say"
-	"github.com/halpdesk/randomwalker/command/walk"
-	"github.com/halpdesk/randomwalker/contracts"
-	"github.com/halpdesk/randomwalker/game"
+	"github.com/halpdesk/mud/command/look"
+	"github.com/halpdesk/mud/command/say"
+	"github.com/halpdesk/mud/command/walk"
+	"github.com/halpdesk/mud/contracts"
+	"github.com/halpdesk/mud/game"
 )
 
 var ErrNotValidCommand = errors.New("not a valid command")
