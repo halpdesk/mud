@@ -21,5 +21,5 @@ func (c Command) Arity() int {
 }
 
 func (c Command) Execute(args []string) string {
-	return fmt.Sprintf("%s says %s", c.p.Name(), args[0])
+	return fmt.Sprintf("%s said %s", c.p.Name(), args[0])
 }

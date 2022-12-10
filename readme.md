@@ -7,7 +7,10 @@ many interesting patterns that needs to be taken into calculation and emerges in
 example command pattern to manage the input and commands from the player, and observer pattern
 to manage asynchronous events that affects the player. Since MUDs are a multi-user system, it
 also requires the programmer to apply secure mutexes to manage all asynchronous events in 
-different go routines.
+different go routines.  
+  
+Example:
+![example.png](example.png)
 
 ### Resource
 
