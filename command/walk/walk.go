@@ -48,7 +48,7 @@ func (c Command) Execute(args []string) string {
 		return NotPossible
 	}
 	c.player.WalkToRoom(&room)
-	return fmt.Sprintf("You went %s", args[0])
+	return fmt.Sprintf("You went %s\n\n%s", args[0], room.CursoryDescription())
 }
 
 func (c Command) roomCoordinatesExist(moveToCoordinates game.Coordinates) (bool, game.Room) {

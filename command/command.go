@@ -38,7 +38,7 @@ func (c Command) GetCommandAndArgs(input string) (contracts.Command, []string, e
 		cmd = say.New(*c.player)
 		break
 	case "look":
-		cmd = look.New(*c.player.Room())
+		cmd = look.New(c.player, c.player.Room())
 		break
 	default:
 		err = ErrNotValidCommand

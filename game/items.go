@@ -3,6 +3,7 @@ package game
 import (
 	"errors"
 	"fmt"
+	"strings"
 
 	"github.com/halpdesk/mud/language"
 	"github.com/halpdesk/mud/screen"
@@ -27,12 +28,31 @@ type Item struct {
 	items       map[language.Preposition][]*Item
 }
 
-func (i Item) FriendlyName() string {
+func (i *Item) FriendlyName() string {
 	return i.name
 }
 
-func (i Item) Description() string {
+func (i *Item) CursoryDescription() string {
 	return screen.Color(fmt.Sprintf("%s %s", i.article, i.name), screen.RedFg, screen.BlackBg)
+}
+
+func (i *Item) Description() string {
+	if len(i.items) > 0 {
+		return fmt.Sprintf("%s. %s", i.description, i.itemsDescription())
+	}
+	return fmt.Sprintf("%s", i.description)
+}
+
+func (i *Item) itemsDescription() string {
+	prepositionDescriptions := []string{}
+	for preposition := range i.items {
+		itemList := []string{}
+		for _, item := range i.items[preposition] {
+			itemList = append(itemList, item.CursoryDescription())
+		}
+		prepositionDescriptions = append(prepositionDescriptions, fmt.Sprintf("There %s %s %s it", language.ItemNumerusArticle(len(i.items[preposition])), strings.Join(itemList, ", "), preposition))
+	}
+	return fmt.Sprintf("%s", strings.Join(prepositionDescriptions, ", "))
 }
 
 func (i *Item) PossibleAttachments() []language.Preposition {
@@ -45,7 +65,7 @@ func (i *Item) ItemMap() map[language.Preposition][]*Item {
 
 func (i *Item) Items() []*Item {
 	var items []*Item
-	for position, _ := range i.items {
+	for position := range i.items {
 		for _, item := range i.items[position] {
 			items = append(items, item)
 		}

@@ -33,6 +33,19 @@ func (p *Player) Room() *Room {
 	return p.room
 }
 
+func (p *Player) Items() []*Item {
+	var items []*Item
+	for _, outerItem := range p.items {
+		items = append(items, outerItem)
+		if outerItem.IsContainer() {
+			for _, innerItem := range outerItem.Items() {
+				items = append(items, innerItem)
+			}
+		}
+	}
+	return items
+}
+
 func (p *Player) Inventory() map[string][]*Item {
 	inventory := make(map[string][]*Item, 0)
 	inventory["self"] = []*Item{}
