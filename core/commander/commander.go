@@ -74,7 +74,10 @@ func (c Command) aliaser(base string, args []string) (string, []string) {
 	if base == "w" || base == "west" {
 		return "go", []string{"west"}
 	}
-	if base == "l" {
+	if base == "l" || base == "look" {
+		if len(args) == 1 && (args[0] == "around" || args[0] == "room") {
+			return "look", nil
+		}
 		return "look", args
 	}
 	return base, args

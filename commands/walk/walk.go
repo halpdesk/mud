@@ -31,16 +31,16 @@ func (c Command) Execute(args []string) string {
 	currentCoordinates := (*(*c.actor).Place()).Coordinates()
 	var moveToCoordinates game.Coordinates
 	switch direction {
-	case "north":
+	case "north", "n":
 		moveToCoordinates = coordinates.New(currentCoordinates.GetX(), currentCoordinates.GetY()+1)
 		break
-	case "south":
+	case "south", "s":
 		moveToCoordinates = coordinates.New(currentCoordinates.GetX(), currentCoordinates.GetY()-1)
 		break
-	case "east":
+	case "east", "e":
 		moveToCoordinates = coordinates.New(currentCoordinates.GetX()+1, currentCoordinates.GetY())
 		break
-	case "west":
+	case "west", "w":
 		moveToCoordinates = coordinates.New(currentCoordinates.GetX()-1, currentCoordinates.GetY())
 		break
 	}

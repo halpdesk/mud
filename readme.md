@@ -9,8 +9,11 @@ to manage asynchronous events that affects the player. Since MUDs are a multi-us
 also requires the programmer to apply secure mutexes to manage all asynchronous events in 
 different go routines.  
   
-Example:
-![example.png](example.png)
+Example day 1:
+![example.png](example.png)  
+  
+Example day 2:
+![example-day2.png](example-day2.png)
 
 ### Resource
 

@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
+	"github.com/halpdesk/mud/core/screen"
 )
 
 type Client struct {
@@ -20,7 +22,7 @@ func (c *Client) LastInput() string {
 }
 
 func (c *Client) Input() string {
-	fmt.Print("> ")
+	fmt.Print(screen.Color("> ", screen.BlueFg, screen.BlackBg))
 	reader := bufio.NewReader(os.Stdin)
 	text, err := reader.ReadString('\n')
 	if err != nil {
