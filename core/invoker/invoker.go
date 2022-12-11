@@ -3,7 +3,7 @@ package invoker
 import (
 	"errors"
 
-	"github.com/halpdesk/mud/contracts"
+	"github.com/halpdesk/mud/core/contracts"
 )
 
 var ErrInvalidArity = errors.New("not enough arguments")

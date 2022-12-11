@@ -6,14 +6,14 @@ import (
 	"github.com/halpdesk/mud/game"
 )
 
-func New(p game.Player) Command {
+func New(p *game.Actor) Command {
 	return Command{
 		p: p,
 	}
 }
 
 type Command struct {
-	p game.Player
+	p *game.Actor
 }
 
 func (c Command) Arity() int {
@@ -21,5 +21,5 @@ func (c Command) Arity() int {
 }
 
 func (c Command) Execute(args []string) string {
-	return fmt.Sprintf("%s said %s", c.p.Name(), args[0])
+	return fmt.Sprintf("%s said %s", (*c.p).Name(), args[0])
 }

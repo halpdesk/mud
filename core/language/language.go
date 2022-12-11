@@ -11,7 +11,7 @@ type Article string
 const A Article = "a"
 const AN Article = "an"
 
-func ItemNumerusArticle(count int) string {
+func NumerusArticle(count int) string {
 	numerusArticle := "are"
 	if count < 2 {
 		numerusArticle = "is"

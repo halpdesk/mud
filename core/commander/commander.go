@@ -1,28 +1,29 @@
-package command
+package commander
 
 import (
 	"errors"
 	"strings"
 
-	"github.com/halpdesk/mud/command/look"
-	"github.com/halpdesk/mud/command/say"
-	"github.com/halpdesk/mud/command/walk"
-	"github.com/halpdesk/mud/contracts"
+	"github.com/halpdesk/mud/commands/look"
+	"github.com/halpdesk/mud/commands/say"
+	"github.com/halpdesk/mud/commands/take"
+	"github.com/halpdesk/mud/commands/walk"
+	"github.com/halpdesk/mud/core/contracts"
 	"github.com/halpdesk/mud/game"
 )
 
 var ErrNotValidCommand = errors.New("not a valid command")
 
-func New(world *game.World, player *game.Player) Command {
+func New(world *game.World, actor *game.Actor) Command {
 	return Command{
-		world:  world,
-		player: player,
+		world: world,
+		actor: actor,
 	}
 }
 
 type Command struct {
-	world  *game.World
-	player *game.Player
+	world *game.World
+	actor *game.Actor
 }
 
 func (c Command) GetCommandAndArgs(input string) (contracts.Command, []string, error) {
@@ -32,13 +33,16 @@ func (c Command) GetCommandAndArgs(input string) (contracts.Command, []string, e
 	// fmt.Printf("-- Command was: %s with %+v", base, args)
 	switch base {
 	case "go":
-		cmd = walk.New(c.player, c.world.GetRooms())
+		cmd = walk.New(c.actor, (*c.world).Places())
 		break
 	case "say":
-		cmd = say.New(*c.player)
+		cmd = say.New(c.actor)
 		break
 	case "look":
-		cmd = look.New(c.player, c.player.Room())
+		cmd = look.New(c.actor, (*c.actor).Place())
+		break
+	case "take":
+		cmd = take.New(c.actor, (*c.actor).Place())
 		break
 	default:
 		err = ErrNotValidCommand
