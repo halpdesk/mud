@@ -1,13 +1,13 @@
 package player
 
 import (
-	"github.com/halpdesk/mud/components/container"
+	"github.com/halpdesk/mud/components/itemcontainer"
 	"github.com/halpdesk/mud/core/language"
 	"github.com/halpdesk/mud/game"
 )
 
 func New(name string, hp int, startRoom *game.Place) game.Actor {
-	bag := container.New(
+	bag := itemcontainer.New(
 		"Bag",
 		"Made of leather. By pulling or loosing a thread, it is possible to close and open it",
 		language.A,
@@ -41,7 +41,7 @@ func (p *Player) Objects() []*game.Object {
 	for _, outerItem := range p.items {
 		items = append(items, outerItem)
 		if (*outerItem).IsContainer() {
-			for _, innerItem := range (*outerItem).Objects() {
+			for _, innerItem := range (*(*outerItem).Container()).Objects() {
 				items = append(items, innerItem)
 			}
 		}
@@ -60,7 +60,7 @@ func (p *Player) Inventory() map[string][]*game.Object {
 		if (*outerItem).IsContainer() {
 
 			inventory[(*outerItem).FriendlyName()] = []*game.Object{}
-			for _, innerItem := range (*outerItem).Objects() {
+			for _, innerItem := range (*(*outerItem).Container()).Objects() {
 				inventory[(*outerItem).FriendlyName()] = append(inventory[(*outerItem).FriendlyName()], innerItem)
 			}
 		} else {

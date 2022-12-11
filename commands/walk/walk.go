@@ -2,7 +2,6 @@ package walk
 
 import (
 	"errors"
-	"fmt"
 
 	"github.com/halpdesk/mud/components/coordinates"
 	"github.com/halpdesk/mud/game"
@@ -50,7 +49,7 @@ func (c Command) Execute(args []string) string {
 		return NotPossible
 	}
 	(*c.actor).WalkToPlace(&room)
-	return fmt.Sprintf("You went %s\n\n%s", args[0], room.CursoryDescription())
+	return room.CursoryDescription()
 }
 
 func (c Command) placeCoordinatesExist(moveToCoordinates game.Coordinates) (bool, game.Place) {

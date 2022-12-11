@@ -30,20 +30,24 @@ func (c Command) Execute(args []string) string {
 	} else {
 		itemName = args[len(args)-1]
 	}
-	for _, object := range (*c.place).Objects() {
-		if (*object).FriendlyName() == itemName {
+	for _, object := range (*(*c.place).Container()).Objects() {
+		if language.Equal((*object).FriendlyName(), itemName) {
 			return (*object).Description()
 		}
-		if onItems, ok := (*object).ObjectsMap()[language.ON]; (*object).IsContainer() && ok {
-			for _, innerItem := range onItems {
-				if (*innerItem).FriendlyName() == itemName {
-					return (*innerItem).Description()
+		if (*object).IsContainer() {
+			for _, preposition := range (*(*object).Container()).PossibleAttachments() {
+				if onItems, ok := (*(*object).Container()).ObjectsMap()[preposition]; ok {
+					for _, innerItem := range onItems {
+						if language.Equal((*innerItem).FriendlyName(), itemName) {
+							return (*innerItem).Description()
+						}
+					}
 				}
 			}
 		}
 	}
 	for _, object := range (*c.actor).Objects() {
-		if (*object).FriendlyName() == itemName {
+		if language.Equal((*object).FriendlyName(), itemName) {
 			return (*object).Description()
 		}
 	}

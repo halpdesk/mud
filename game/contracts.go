@@ -21,8 +21,8 @@ type Place interface {
 	FriendlyName() string
 	CursoryDescription() string
 	Description() string
-	Objects() []*Object
 	Coordinates() Coordinates
+	Container() *Container
 }
 
 type PlaceType string
@@ -31,14 +31,19 @@ const ROOM PlaceType = "room"
 const AREA PlaceType = "area"
 
 type Object interface {
+	ObjectType() ObjectType
 	FriendlyName() string
 	CursoryDescription() string
 	Description() string
-	// itemsDescription() string
+	IsContainer() bool
+	Container() *Container
+}
+
+type Container interface {
+	ObjectsDescription() string
 	PossibleAttachments() []language.Preposition
 	ObjectsMap() map[language.Preposition][]*Object
 	Objects() []*Object
-	IsContainer() bool
 	PutObject(object *Object, preposition language.Preposition) error
 	RemoveObject(object *Object) error
 }
@@ -55,6 +60,7 @@ type ObjectType string
 
 const FURNITURE ObjectType = "furniture"
 const CONTAINER ObjectType = "container"
+const ITEMCONTAINER ObjectType = "itemcontainer"
 const ITEM ObjectType = "item"
 
 type Actor interface {
